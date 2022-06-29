@@ -3,6 +3,7 @@ const CharactersRaM = require('../models/CharactersRaM');
 //função que retorna todos os personagens
 const findCharacterService = async () => {
   const characters = await CharactersRaM.find();
+  console.log(characters)
   return characters;
 };
 

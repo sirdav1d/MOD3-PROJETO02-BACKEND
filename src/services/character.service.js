@@ -1,16 +1,16 @@
 const CharactersRaM = require('../models/CharactersRaM');
+const mongoose = require('mongoose');
 
 //função que retorna todos os personagens
 const findCharacterService = async () => {
-  const characters = await CharactersRaM.find();
-  console.log(characters)
+  const characters = await CharactersRaM.find()
   return characters;
 };
 
 //funcão que retorna personagem pelo ID
 const findCharacterByIdService = async (id) => {
-  const response = await characters.find((character) => character.id === id);
-  return response;
+  const character = await CharactersRaM.findById(id);
+  return character;
 };
 
 //função que retorna um novo personagem e adiciona a lista
@@ -40,12 +40,7 @@ const deleteCharacterService = (id) => {
   });
 };
 
-function isValidId(id) {
-  const response = characters.find((character) => character.id === id);
-  if (response) {
-    return true;
-  }
-}
+
 
 module.exports = {
   findCharacterService,
@@ -53,5 +48,4 @@ module.exports = {
   createCharacterService,
   updateCharacterService,
   deleteCharacterService,
-  isValidId,
 };

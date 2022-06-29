@@ -1,17 +1,18 @@
 const characterService = require('../services/character.service');
+const mongoose = require('mongoose');
 
 const findCharacterController = async (req, res) => {
   const allCharacters = await characterService.findCharacterService();
   res.send(allCharacters);
 };
 
-const findCharacterByIdController = (req, res) => {
-  const idParam = +req.params.id;
+const findCharacterByIdController = async (req, res) => {
+  const idParam = req.params.id;
 
-  if (!characterService.isValidId(idParam)) {
+  if (!mongoose.Types.ObjectId.isValid(idParam)) {
     return res.status(404).send({ message: 'Digite um ID válido' });
   }
-  const chosenCharacter = characterService.findCharacterByIdService(idParam);
+  const chosenCharacter = await characterService.findCharacterByIdService(idParam);
   res.send(chosenCharacter);
 };
 

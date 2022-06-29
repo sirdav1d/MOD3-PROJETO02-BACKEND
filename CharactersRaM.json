@@ -1,0 +1,22 @@
+[
+  {
+    "nome": "Morty Smith",
+    "descricao": "Morty é emocional, ingênuo, obediente e facilmente manipulado, especialmente por Rick, que também o usa como assistente de suas invenções.",
+    "foto": "./assets/images/morty400x400"
+  },
+  {
+    "nome": "Rick Sanchez",
+    "descricao": "Rick atualmente reside em seu quarto na casa dos Smiths. Na garagem, ele trabalha em suas invenções e fórmulas científicas e as examina, viajando para outras dimensões, construindo vários robôs e dispositivos e causando caos em diferentes partes do universo",
+    "foto": "./assets/images/rick400x400"
+  },
+  {
+    "nome": "Summer Smith",
+    "descricao": "Summer é uma adolescente convencional e muitas vezes superficial de 17 anos, obcecada em melhorar seu status entre os colegas. Conhecida por sua personalidade inteligente e bem-humorada e por sua alta destreza, a personagem foi bem recebido.",
+    "foto": "./assets/images/summer400x400"
+  },
+  {
+    "nome": "Jerry Smith",
+    "descricao": "Jerry sempre tenta pensar no melhor interesse da família, mas sua tentativa de ser o patriarca da família pode muitas vezes ser equivocada por sua natureza egocêntrica. Isso causa um grande conflito com Rick, pois seu sogro claramente não tem respeito por ele.",
+    "foto": " ./assets/images/jerrysmith400x400"
+  }
+]

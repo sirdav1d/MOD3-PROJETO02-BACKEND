@@ -21,14 +21,17 @@ const createCharacterService = async (newCharacter) => {
 
 //função que retorna um personagem da lista editado
 const updateCharacterService = async (id, characterEdited) => {
-  const updatedCharacter = await CharactersRaM.findByIdAndUpdate(id, characterEdited);
+  const updatedCharacter = await CharactersRaM.findByIdAndUpdate(
+    id,
+    characterEdited,
+  ).setOptions({ returnOriginal: false });
   return updatedCharacter;
 };
 
 //função que deleta um personagem da lista
 const deleteCharacterService = async (id) => {
-  return await CharactersRaM.findByIdAndDelete(id)
-}
+  return await CharactersRaM.findByIdAndDelete(id);
+};
 
 module.exports = {
   findCharacterService,

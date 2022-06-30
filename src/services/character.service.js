@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 //função que retorna todos os personagens
 const findCharacterService = async () => {
-  const characters = await CharactersRaM.find()
+  const characters = await CharactersRaM.find();
   return characters;
 };
 
@@ -14,33 +14,21 @@ const findCharacterByIdService = async (id) => {
 };
 
 //função que retorna um novo personagem e adiciona a lista
-const createCharacterService = (newCharacter) => {
-  const newId = randomId();
-  newCharacter.id = newId;
-  characters.push(newCharacter);
-  return newCharacter;
+const createCharacterService = async (newCharacter) => {
+  const newCharacterRaM = await CharactersRaM.create(newCharacter);
+  return newCharacterRaM;
 };
 
 //função que retorna um personagem da lista editado
-const updateCharacterService = (id, characterEdited) => {
-  characterEdited['id'] = id;
-  const characterIndex = characters.findIndex(
-    (character) => character.id === id,
-  );
-  characters[characterIndex] = characterEdited;
-  return characterEdited;
+const updateCharacterService = async (id, characterEdited) => {
+  const updatedCharacter = await CharactersRaM.findByIdAndUpdate(id, characterEdited);
+  return updatedCharacter;
 };
 
 //função que deleta um personagem da lista
-const deleteCharacterService = (id) => {
-  characters.forEach((character, index) => {
-    if (character.id === id) {
-      characters.splice(index, 1);
-    }
-  });
-};
-
-
+const deleteCharacterService = async (id) => {
+  return await CharactersRaM.findByIdAndDelete(id)
+}
 
 module.exports = {
   findCharacterService,

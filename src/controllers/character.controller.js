@@ -10,13 +10,15 @@ const findCharacterByIdController = async (req, res) => {
   const idParam = req.params.id;
 
   if (!mongoose.Types.ObjectId.isValid(idParam)) {
-    return res.status(404).send({ message: 'Digite um ID válido' });
+    return res.status(206).send({ message: 'Digite um ID válido' });
   }
-  const chosenCharacter = await characterService.findCharacterByIdService(idParam);
-  res.send(chosenCharacter);
+  const chosenCharacter = await characterService.findCharacterByIdService(
+    idParam,
+  );
+  res.send({ message: 'Personagem encontrado', data: chosenCharacter });
 };
 
-const createCharacterController = (req, res) => {
+const createCharacterController = async (req, res) => {
   const character = req.body;
   if (
     !character ||
@@ -26,17 +28,17 @@ const createCharacterController = (req, res) => {
   ) {
     return res.status(400).send({ message: 'Envie o formulário completo' });
   }
-  const newCharacter = characterService.createCharacterService(character);
+  const newCharacter = await characterService.createCharacterService(character);
   res
     .status(201)
     .send({ message: 'Personagem criado com sucesso', data: newCharacter });
 };
 
-const updateCharacterController = (req, res) => {
-  const idParam = +req.params.id;
+const updateCharacterController = async (req, res) => {
+  const idParam = req.params.id;
 
-  if (!characterService.isValidId(idParam)) {
-    return res.status(404).send({ message: 'Digite um ID válido' });
+  if (!mongoose.Types.ObjectId.isValid(idParam)) {
+    return res.status(206).send({ message: 'Digite um ID válido' });
   }
 
   const characterEdit = req.body;
@@ -50,7 +52,7 @@ const updateCharacterController = (req, res) => {
     return res.status(400).send({ message: 'Envie o formulário completo' });
   }
 
-  const updatedCharacter = characterService.updateCharacterService(
+  const updatedCharacter = await characterService.updateCharacterService(
     idParam,
     characterEdit,
   );
@@ -61,14 +63,14 @@ const updateCharacterController = (req, res) => {
   });
 };
 
-const deleteCharacterController = (req, res) => {
-  const idParam = +req.params.id;
+const deleteCharacterController = async (req, res) => {
+  const idParam = req.params.id;
 
-  if (!characterService.isValidId(idParam)) {
-    return res.status(404).send({ message: 'Digite um ID válido' });
+  if (!mongoose.Types.ObjectId.isValid(idParam)) {
+    return res.status(206).send({ message: 'Digite um ID válido' });
   }
 
-  characterService.deleteCharacterService(idParam);
+  await characterService.deleteCharacterService(idParam);
   res.send({ message: 'Personagem deletado com sucesso!' });
 };
 

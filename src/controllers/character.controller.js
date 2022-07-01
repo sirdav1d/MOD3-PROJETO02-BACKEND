@@ -1,17 +1,15 @@
 const characterService = require('../services/character.service');
-const mongoose = require('mongoose');
 
 const findCharacterController = async (req, res) => {
   const allCharacters = await characterService.findCharacterService();
+  if (allCharacters.length == 0) {
+    res.status(206).send({ message: 'Nenhum personagem encontrado' });
+  }
   res.send(allCharacters);
 };
 
 const findCharacterByIdController = async (req, res) => {
   const idParam = req.params.id;
-
-  if (!mongoose.Types.ObjectId.isValid(idParam)) {
-    return res.status(206).send({ message: 'Digite um ID válido' });
-  }
   const chosenCharacter = await characterService.findCharacterByIdService(
     idParam,
   );
@@ -20,14 +18,6 @@ const findCharacterByIdController = async (req, res) => {
 
 const createCharacterController = async (req, res) => {
   const character = req.body;
-  if (
-    !character ||
-    !character.nome ||
-    !character.descricao ||
-    !character.foto
-  ) {
-    return res.status(400).send({ message: 'Envie o formulário completo' });
-  }
   const newCharacter = await characterService.createCharacterService(character);
   res
     .status(201)
@@ -36,22 +26,7 @@ const createCharacterController = async (req, res) => {
 
 const updateCharacterController = async (req, res) => {
   const idParam = req.params.id;
-
-  if (!mongoose.Types.ObjectId.isValid(idParam)) {
-    return res.status(206).send({ message: 'Digite um ID válido' });
-  }
-
   const characterEdit = req.body;
-
-  if (
-    !characterEdit ||
-    !characterEdit.nome ||
-    !characterEdit.descricao ||
-    !characterEdit.foto
-  ) {
-    return res.status(400).send({ message: 'Envie o formulário completo' });
-  }
-
   const updatedCharacter = await characterService.updateCharacterService(
     idParam,
     characterEdit,
@@ -65,11 +40,6 @@ const updateCharacterController = async (req, res) => {
 
 const deleteCharacterController = async (req, res) => {
   const idParam = req.params.id;
-
-  if (!mongoose.Types.ObjectId.isValid(idParam)) {
-    return res.status(206).send({ message: 'Digite um ID válido' });
-  }
-
   await characterService.deleteCharacterService(idParam);
   res.send({ message: 'Personagem deletado com sucesso!' });
 };

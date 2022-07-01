@@ -1,5 +1,4 @@
 const CharactersRaM = require('../models/CharactersRaM');
-const mongoose = require('mongoose');
 
 //função que retorna todos os personagens
 const findCharacterService = async () => {

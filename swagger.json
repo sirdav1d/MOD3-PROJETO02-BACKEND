@@ -60,7 +60,7 @@
             "description": "Digite um ID válido"
           },
           "200": {
-            "description": "OK",
+            "description": "Personagem encontrado",
             "content": {
               "application/json": {
                 "schema": {
@@ -104,7 +104,7 @@
             "description": "Envie o formulário completo"
           },
           "201": {
-            "description": "Created",
+            "description": "Personagem criado com sucesso",
             "content": {
               "application/json": {
                 "schema": {
@@ -152,10 +152,10 @@
         },
         "responses": {
           "206": {
-            "description": "Partial Content"
+            "description": "Digite um ID válido"
           },
           "200": {
-            "description": "OK",
+            "description": "Personagem atualizado com sucesso",
             "content": {
               "application/json": {
                 "schema": {
@@ -186,7 +186,7 @@
             "description": "Digite um ID válido"
           },
           "200": {
-            "description": "OK"
+            "description": "Personagem deletado com sucesso!"
           }
         }
       }

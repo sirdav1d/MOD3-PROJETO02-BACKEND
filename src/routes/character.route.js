@@ -3,7 +3,8 @@ const router = express.Router();
 const characterController = require('../controllers/character.controller');
 const { validId, validChar } = require('../middlewares/character.middleware');
 
-router.get('/all-characters', characterController.findCharacterController);
+router.get('/all-characters', 
+characterController.findCharacterController);
 
 router.get(
   '/find-character/:id',

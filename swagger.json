@@ -1,0 +1,213 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Ricky and Morty",
+    "description": "API para CRUD de personagens de Ricky and Morty",
+    "termsOfService": "",
+    "contact": {
+      "email": "ddavid.diniz@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+
+  "servers": [
+    {
+      "url": "http://localhost:3000/RickandMorty",
+      "description": "API de teste"
+    }
+  ],
+  "paths": {
+    "/all-characters/": {
+      "get": {
+        "summary": "Lista de todos os personagens",
+        "description": "Rota responsável por listar todos os personagens",
+        "tags": ["Ricky and Morty - CRUD"],
+        "responses": {
+          "206": {
+            "description": "Nenhum personagem encontrado"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CharSchema"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/find-character/{id}": {
+      "get": {
+        "summary": "Encontrar por ID",
+        "description": "Rota responsável por encontrar personagem pelo ID",
+        "tags": ["Ricky and Morty - CRUD"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id para a busca",
+            "required": true
+          }
+        ],
+        "responses": {
+          "206": {
+            "description": "Digite um ID válido"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/CharSchema"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/create/": {
+      "post": {
+        "summary": "Criar personagem",
+        "description": "Rota responsável por criar um novo personagem",
+        "tags": ["Ricky and Morty - CRUD"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CharSchema"
+              },
+              "examples": {
+                "CharSchema": {
+                  "value": {
+                    "nome": "Morty Smith",
+                    "descricao": "Morty é emocional, ingênuo, obediente e facilmente manipulado, especialmente por Rick, que também o usa como assistente de suas invenções.",
+                    "foto": "./assets/images/morty400x400"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Envie o formulário completo"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/CharSchema"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/{id}": {
+      "put": {
+        "summary": "Editar Personagem",
+        "description": "Rota responsável por editar um personagem pelo ID",
+        "tags": ["Ricky and Morty - CRUD"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id para a busca",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CharSchema"
+              },
+              "examples": {
+                "CharSchema": {
+                  "value": {
+                    "nome": "Morty Smith",
+                    "descricao": "Morty é emocional, ingênuo, obediente e facilmente manipulado, especialmente por Rick, que também o usa como assistente de suas invenções.",
+                    "foto": "./assets/images/morty400x400"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "206": {
+            "description": "Partial Content"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/CharSchema"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete/{id}": {
+      "delete": {
+        "tags": ["Ricky and Morty - CRUD"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id para a busca",
+            "required": true
+          }
+        ],
+        "responses": {
+          "206": {
+            "description": "Digite um ID válido"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CharSchema": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "String"
+          },
+          " descricao": {
+            "type": "String"
+          },
+          "foto": {
+            "type": " String"
+          }
+        }
+      }
+    }
+  }
+}

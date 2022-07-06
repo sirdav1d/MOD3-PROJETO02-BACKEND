@@ -12,12 +12,12 @@
 
   "servers": [
     {
-      "url": "http://localhost:3000/RickandMorty",
+      "url": "https://api-ramv1.herokuapp.com/RickandMorty",
       "description": "API de teste"
     }
   ],
   "paths": {
-    "/all-characters/": {
+    "/all-characters": {
       "get": {
         "summary": "Lista de todos os personagens",
         "description": "Rota responsável por listar todos os personagens",

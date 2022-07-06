@@ -12,7 +12,7 @@
 
   "servers": [
     {
-      "url": "https://api-ramv1.herokuapp.com",
+      "url": "https://api-ramv1.herokuapp.com/RickandMorty",
       "description": "API de teste"
     }
   ],

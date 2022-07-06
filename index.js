@@ -16,5 +16,5 @@ app.use('/RickandMorty', routeRaM);
 app.use('/api-docs', swaggerRoute);
 
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+  console.log(`Servidor rodando na porta: ${port}`);
 });

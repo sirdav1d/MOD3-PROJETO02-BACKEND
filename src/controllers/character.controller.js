@@ -13,7 +13,7 @@ const findCharacterByIdController = async (req, res) => {
   const chosenCharacter = await characterService.findCharacterByIdService(
     idParam,
   );
-  res.send({ message: 'Personagem encontrado', data: chosenCharacter });
+  res.send(chosenCharacter);
 };
 
 const createCharacterController = async (req, res) => {
@@ -21,7 +21,7 @@ const createCharacterController = async (req, res) => {
   const newCharacter = await characterService.createCharacterService(character);
   res
     .status(201)
-    .send({ message: 'Personagem criado com sucesso', data: newCharacter });
+    .send(newCharacter);
 };
 
 const updateCharacterController = async (req, res) => {
@@ -32,10 +32,7 @@ const updateCharacterController = async (req, res) => {
     characterEdit,
   );
 
-  res.send({
-    message: 'Personagem atualizado com sucesso',
-    data: updatedCharacter,
-  });
+  res.send(updatedCharacter);
 };
 
 const deleteCharacterController = async (req, res) => {
